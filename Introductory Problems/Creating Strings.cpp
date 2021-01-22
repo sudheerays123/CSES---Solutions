@@ -20,14 +20,6 @@ typedef long long int ll;
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
  
-ll fact(ll n){
- 
-    ll res = 1;
-    fo(i,2,n) res = res * i;
- 
-    return res;
-}
- 
 int main() {
  
     string x;
@@ -35,21 +27,11 @@ int main() {
  
     vector<char> s;
  
-    ll ans = x.size();
-    ans = fact(ans);
- 
-    unordered_map<char,ll> m;
- 
-    for(auto i : x) {
-        s.pb(i);
-        m[i]++;
-    }
- 
-    for(auto i : m){
-        if(i.second == 1) continue;
-        ans /= fact(i.second);
-    }
- 
+    for(auto i : x) s.pb(i);
+    
+    ll ans = 1;
+    sort(s.begin(),s.end());
+    while(next_permutation(s.begin(),s.end())) ans++;
     cout out ans nextline;
  
     sort(s.begin(),s.end());
