@@ -30,7 +30,7 @@ void dfs(ll s){
     visited[s] = true;
  
     for(auto u : adj[s]) {
-        if ((visited[u] == false && ans[s] == ans[u]) || (visited[u] == false && ans[s] == ans[u])) {
+        if (visited[u] == false && ans[s] == ans[u]) {
             pos = false;
             return;
         }
