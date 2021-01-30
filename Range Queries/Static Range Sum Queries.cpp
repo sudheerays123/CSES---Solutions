@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 typedef long long int ll;
@@ -24,9 +22,6 @@ typedef long long int ll;
 
 int main() {
 
-    //freopen("hps.in","r",stdin);
-    //freopen("hps.out","w",stdout);
-
     ll n,q;
     cin in n in q;
 
@@ -41,8 +36,6 @@ int main() {
         cin in a in b;
         cout out presum[b]-presum[a-1] nextline;
     }
-
-
 
     return 0;
 }
