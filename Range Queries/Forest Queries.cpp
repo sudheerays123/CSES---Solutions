@@ -28,8 +28,10 @@ int main() {
     vector<vi> pre(n+5,vi(n+5,0));
 
     fo(i,1,n){
+        
         string s;
         cin in s;
+        
         fo(j,0,n-1){
             if(s[j] == '*') pre[i][j+1] = 1+pre[i-1][j+1]+pre[i][j]-pre[i-1][j];
             else pre[i][j+1] = pre[i-1][j+1]+pre[i][j]-pre[i-1][j];
@@ -37,8 +39,10 @@ int main() {
     }
 
     while(q--){
+        
         ll a,b,c,d;
         cin in a in b in c in d;
+        
         cout out pre[c][d]+pre[a-1][b-1]-pre[a-1][d]-pre[c][b-1] nextline;
     }
 
