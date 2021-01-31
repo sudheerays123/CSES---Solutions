@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <map>
+#include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 typedef long long int ll;
@@ -24,9 +21,6 @@ typedef long long int ll;
 #define mmin(x,i) x = min(x,i)
 
 int main() {
-
-    //freopen("div7.in","r",stdin);
-    //freopen("div7.out","w",stdout);
 
     ll n;
     cin in n;
