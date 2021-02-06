@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 typedef long long int ll;
@@ -7,7 +9,7 @@ typedef long long int ll;
 #define pb push_back
 #define mp make_pair
 #define INF 0x3f3f3f3f3f
-#define MOD 1e9 + 7
+#define MOD 1000000007
 #define ff first
 #define ss second
 #define in >>
@@ -25,25 +27,25 @@ int main() {
     ll n,x;
     cin in n in x;
 
-    map<ll,vi> cnt;
-
-    fo(i,0,n-1){
-        ll x;
-        cin in x;
-        cnt[x].pb(i+1);
+    vector<vi> a(n+5,vi(2));
+    fo(i,0,n-1) {
+        cin in a[i][0];
+        a[i][1] = i+1;
     }
 
-    for(auto i : cnt){
-        auto pos = cnt.find(x-i.first);
-        if(pos != cnt.end()){
-            if(x-i.first == i.first && i.second.size() >= 2)  {
-                cout out i.second[0] space  pos->second[1];
-                return 0;
-            }
-            else if(x-i.first == i.first) break;
-            else cout out i.second[0] space  pos->second[0];
+    sort(a.begin(),a.begin()+n);
+
+    ll low = 0 , high = n-1;
+
+    while(low < high){
+        ll sum = a[low][0] + a[high][0];
+
+        if(sum == x){
+            cout out a[low][1] space a[high][1];
             return 0;
         }
+        else if(sum < x) low++;
+        else if(sum > x) high--;
     }
 
     cout out "IMPOSSIBLE";
