@@ -4,13 +4,13 @@
 #include <queue>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-typedef long long int ll;
+#define ll long long int
 #define tc ll test;cin >> test;while(test--)
 #define vi vector<ll>
 #define pb push_back
 #define mp make_pair
 #define INF 0x3f3f3f3f3f
-#define MOD 7
+#define MOD 13371337
 #define ff first
 #define ss second
 #define in >>
@@ -19,66 +19,82 @@ typedef long long int ll;
 #define spacef << " "
 #define fo(i,a,b) for(ll i = a; i <= b; i++)
 #define nextline out "\n"
-#define print(x) for(auto i : x ) cout out i spacef;
+#define print(x) for(auto i : x ) cout out i spacef
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
-
+#define N 200005
+ 
+ll n;
 vi adj[100005];
-vi dist(100005,INF);
 vi parent(100005);
-
-void dijkstra(ll s){
-
-    priority_queue<pair<ll,ll>> q;
-    vector<bool> visited(100005,false);
-
+ 
+ll bfs(ll s){
+ 
+    vi dist(n+5,INF);
+    vector<bool> visited(n+5,false);
+    queue<ll> q;
+ 
     dist[s] = 1;
-    q.push({1,s});
-
+    visited[s] = true;
+    q.push(s);
+ 
     while(!q.empty()){
-        ll a = q.top().second;
+ 
+        ll a = q.front();
         q.pop();
-
-        if(visited[a]) continue;
-        visited[a] = true;
-
+ 
         for(auto u : adj[a]){
-            if(dist[a] + 1 < dist[u]){
+ 
+            if(dist[u] > dist[a] + 1){
                 dist[u] = dist[a] + 1;
-                q.push({-dist[u],u});
+                q.push(u);
                 parent[u] = a;
             }
         }
     }
+ 
+    return dist[n];
 }
+ 
 int main() {
-
-    ll n,m;
+ 
+    ll m;
     cin in n in m;
-
+ 
+ 
     fo(i,0,m-1){
-        ll u,v;
-        cin in u in v;
-
-        adj[u].pb(v);
-        adj[v].pb(u);
+ 
+        ll a,b;
+        cin in a in b;
+ 
+        adj[a].pb(b);
+        adj[b].pb(a);
+ 
     }
-
-    dijkstra(1);
-
-    if(dist[n] != INF) {
-        cout out dist[n] nextline;
-        vi path(0);
-        path.pb(n);
-        ll last = n;
-        while(last != 1){
-            last = parent[last];
-            path.pb(last);
-        }
-        for(ll i = path.size()-1; i >= 0; i--) cout out path[i] spacef;
-
+ 
+    ll d = bfs(1);
+ 
+    if(d == INF) {
+        cout out "IMPOSSIBLE\n";
+        return 0;
     }
-    else cout out "IMPOSSIBLE";
-
+ 
+    cout out bfs(1) nextline;
+ 
+    cout out 1 spacef;
+ 
+    ll last = n;
+    vi path(0);
+ 
+    while(last != 1){
+ 
+        path.pb(last);
+        last = parent[last];
+    }
+ 
+    reverse(path.begin(),path.end());
+ 
+    print(path);
+ 
     return 0;
 }
