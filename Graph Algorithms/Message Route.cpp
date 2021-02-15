@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define ll long long int
@@ -23,28 +20,28 @@ using namespace std;
 #define mmax(x,i) x = max(x,i)
 #define mmin(x,i) x = min(x,i)
 #define N 200005
- 
+
 ll n;
 vi adj[100005];
 vi parent(100005);
- 
+
 ll bfs(ll s){
- 
+
     vi dist(n+5,INF);
     vector<bool> visited(n+5,false);
     queue<ll> q;
- 
+
     dist[s] = 1;
     visited[s] = true;
     q.push(s);
- 
+
     while(!q.empty()){
- 
+
         ll a = q.front();
         q.pop();
- 
+
         for(auto u : adj[a]){
- 
+
             if(dist[u] > dist[a] + 1){
                 dist[u] = dist[a] + 1;
                 q.push(u);
@@ -52,49 +49,48 @@ ll bfs(ll s){
             }
         }
     }
- 
+
     return dist[n];
 }
- 
+
 int main() {
- 
+
     ll m;
     cin in n in m;
- 
- 
+
+
     fo(i,0,m-1){
- 
+
         ll a,b;
         cin in a in b;
- 
+
         adj[a].pb(b);
         adj[b].pb(a);
- 
+
     }
- 
+
     ll d = bfs(1);
- 
+
     if(d == INF) {
         cout out "IMPOSSIBLE\n";
         return 0;
     }
- 
+
     cout out bfs(1) nextline;
- 
-    cout out 1 spacef;
- 
+
     ll last = n;
     vi path(0);
- 
+
     while(last != 1){
- 
+
         path.pb(last);
         last = parent[last];
     }
- 
+
+    path.pb(1);
     reverse(path.begin(),path.end());
- 
+
     print(path);
- 
+
     return 0;
 }
