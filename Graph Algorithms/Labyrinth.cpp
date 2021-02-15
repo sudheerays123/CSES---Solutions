@@ -60,7 +60,7 @@ ll bfs(ll startx , ll starty , ll endx , ll endy){
 
             }
         }
-
+        
     }
 
     return dist[endx][endy];
@@ -111,22 +111,14 @@ int main() {
 
         if(lastc != 'S') path.pb(parent[lastx][lasty]);
 
-        if(lastc == 'U'){
-            lastx++;
-        }
-        if(lastc == 'D'){
-            lastx--;
-        }
-        if(lastc == 'L'){
-            lasty++;
-        }
-        if(lastc == 'R'){
-            lasty--;
-        }
+        if(lastc == 'U') lastx++;
+        if(lastc == 'D') lastx--;
+        if(lastc == 'L') lasty++;
+        if(lastc == 'R') lasty--;
+       
     }
 
     reverse(path.begin(),path.end());
-
     print(path);
 
     return 0;
