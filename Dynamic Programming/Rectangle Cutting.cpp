@@ -46,13 +46,13 @@ int main() {
 
             // cut vertically
 
-            fo(k,1,i-1){
+            fo(k,1,i/2){
                 mmin(dp[i][j] , 1 + dp[k][j] + dp[i-k][j]);
             }
 
             // cut horizontally
 
-            fo(k,1,j-1){
+            fo(k,1,j/2){
                 mmin(dp[i][j] , 1 + dp[i][k] + dp[i][j-k]);
             }
 
